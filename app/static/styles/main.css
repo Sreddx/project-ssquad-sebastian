@@ -1,80 +1,114 @@
-/* Navbar container */
+@import url('https://fonts.googleapis.com/css?family=Work+Sans:400,600');
+
+*{
+    margin: 0;
+    /* Padding top 3px rest 0*/
+    padding: 3px 0 0 0; 
+}
+/* Nav bar section*/
 .navbar {
-    overflow: hidden;
-    background-color: #333;
-    font-family: Arial;
+    margin-top: 5px ;
+	width: 100%;
+	margin: 0;
 }
 
-/* Links inside the navbar */
-.navbar a {
-    float: left;
-    font-size: 16px;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-/* The dropdown container */
-.dropdown {
-    float: left;
-    overflow: hidden;
-}
-
-/* Dropdown button */
-.dropdown .dropbtn {
-    font-size: 16px;
-    border: none;
-    outline: none;
-    color: white;
-    padding: 14px 16px;
-    background-color: inherit;
-    font-family: inherit; /* Important for vertical align on mobile phones */
-    margin: 0; /* Important for vertical align on mobile phones */
-}
-
-/* Add a red background color to navbar links on hover */
-.navbar a:hover, .dropdown:hover .dropbtn {
-    background-color: rgb(180, 180, 180);
-}
-
-/* Dropdown content (hidden by default) */
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-}
-
-/* Links inside the dropdown */
-.dropdown-content a {
-    float: none;
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-}
-
-/* Add a grey background color to dropdown links on hover */
-.dropdown-content a:hover {
-    background-color: #ddd;
-}
+header {
   
-/* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {
-    display: block;
+  font-family: 'Work Sans', sans-serif;
+  margin: 0;
+  padding-bottom: 10px;
 }
+
+header::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+
+nav {
+  float: left;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav li {
+  display: inline-block;
+  margin-left: 70px;
+  padding-top: 23px;
+
+  position: relative;
+}
+
+nav a {
+  color: #444;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: #000;
+}
+
+nav a::before {
+  content: '';
+  display: block;
+  height: 5px;
+  background-color: #444;
+
+  position: absolute;
+  top: 0;
+  width: 0%;
+
+  transition: all ease-in-out 250ms;
+}
+
+nav a:hover::before {
+  width: 100%;
+}
+/*Banner section*/
+
+/*Background video*/
+.back-video{
+    position: absolute;
+    right: 0;
+    left: 0;
+    z-index: -1;
+     /* Add the blur effect */
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+}
+
+@media (min-aspect-ratio: 16/9) {
+  .back-video {
+    height: auto;
+    width: 100%;
+  }
+}
+
+@media (max-aspect-ratio: 16/9) {
+  .back-video {
+    height: auto;
+    width: 100%;
+  }
+}
+/* Banner content*/
 #home{
+    margin-top: 3px;
+    width: 100%;
     min-height: 100vh;
-    background-color: rgb(211, 255, 252);
+    
 }
 #home .welcome-message{
     /*text-align: center;
     vertical-align: middle;*/
-    
+    color: white;
     position: absolute;
     font-size: 50px;
     top: 50%;
@@ -84,176 +118,39 @@
     transform: translateX(-50%) translateY(-50%);
 }
 
-#about-us{
+#about-me{
     min-height: 100vh;
+    text-align: center;
     background-color: rgb(255, 255, 255);
 }
 
-#about-us .about{
-    margin-top: 5%;
+#about-me .about{
+    margin-top: 3%;
     text-align: center;
     font-size: 30px;
-    
+    margin-bottom: 1%;
 }
 
 .row{
-    padding-top: 3%;
-}
-
-.column{
-    /*box-shadow: 10px 10px 10px 10px rgba(154, 169, 250, 0.19), 10px 10px 10px 10px rgba(154, 169, 250, 0.19);*/
-
-    /*flex: 40%;
-    padding: 5%;*/
-    float: left;
-    margin-top: 5%;
-    margin-left: 12.5%;
-    margin-right: 12.5%;
-    width: 25%;
-    height: 40%;
-
-    position: relative;
-    overflow: hidden;
-    border-radius: 50%;
-}
-#sally-column{
-    box-shadow: 10px 10px 10px 10px rgba(154, 169, 250, 0.19), 10px 10px 10px 10px rgba(154, 169, 250, 0.19);
-    
-}
-
-#sebas-column{
-    box-shadow: 10px 10px 10px 10px rgba(133, 249, 160, 0.19), 10px 10px 10px 10px rgba(133, 249, 160, 0.19);
-}
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-
-img {
-    /*float:left;*/
-    width: 100%;
-    margin-right: 1%; 
-    margin-bottom: 0.5em;
-    display: inline;
-    margin: 0 auto;
-    height: 50%;
-    /*width: auto;*/
-}
-
-.label{
-    float: left;
     text-align: center;
-    font-size: 20px;
-    margin-top: 2%;
-    margin-left: 10%;
-    margin-right: 10%;
-    width: 30%;
-    height: 50%;
-
-    position: relative;
-}
-
-
-
-
-/*
-p, h1, h2, h3, h4, h5, h6, button {
-    font-family: "Roboto", serif;
-}
-
-body {
-    background-color: #f5f5f9;
-    background-size: cover;
-    width: auto; 
-    overflow-x: hidden;
-    font-family: "Roboto", serif;
-    margin: 0px;
-}
-
-.nav-bar {
-    width: 100%;
-    display: inline-block;
-    background-color: #1C539F;
-    font-family: "Roboto", serif;
-    font-weight: 700 !important;
-    padding-top: 10px;
-}
-
-.nav-content .logo-touch-target {
-    display: inline-flex;
-    height: 60%;
-    width: 350px;
-}
-
-.nav-content .nav-logo {
-    height: 60px;
-    margin: auto;
-}
-
-.nav-logo {
     display: flex;
-    align-items: center;
     justify-content: center;
 }
 
-.nav-logo img {
-    width: 200px;
+img {
+    box-shadow: 10px 10px 10px 10px rgba(133, 249, 160, 0.19), 10px 10px 10px 10px rgba(133, 249, 160, 0.19);
+    border-radius: 50%;
+    max-width: 80%;
+    max-height: 80%;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    display: inline;
+    
 }
 
-.nav-content nav {
-    display: block;
-    width: 100%;
-    text-align: right;
-    padding-top: 0px;
-    padding-right: 0px;
-}
 
-.profile {
-    background-color: #1d539f !important;
-    text-align: center;
-    height: 320px;
-    margin-bottom: 50px;
-}
 
-.profile h1 {
-        font-size: 50px;
-        font-weight: 700;
-        color: white;
-}
 
-.profile img {
-        border-radius: 50%;
-        max-width: 100%;
-        max-height: 100%;
-        margin-left: auto;
-        margin-right: auto;
-        display: block;        
-        padding: 20px;
-}
 
-.profile .profile-picture {
-    margin-bottom: 30px;
-    height: 200px;
-}
-
-.banner {
-    padding: 20px 0px 50px 0px;
-    height: 150px;
-    background-color: #1d539f;
-}
-
-.banner .logo {
-    max-width:180px;
-    max-height:60px;
-    width: auto;
-    height: auto;
-}
-
-.banner .title {
-    color: white;
-    font-size: 50px;
-    font-weight: 700;
-}
 
 

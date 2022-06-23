@@ -17,121 +17,47 @@
     <link lang='sass' rel="stylesheet" href="./static/styles/main.css">
     <link rel='icon' href='./static/img/favicon.ico' type='image/x-icon' />
     
-   
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
     <title>{{ title }}</title>
 </head>
-
+<header>
+ <!--Navigation Bar-->
+ <div class="navbar">
+    <nav>
+        <ul>
+            <li><a href="http://redsportfolio.duckdns.org:5000/">Home</a></li>
+            <li><a href="http://redsportfolio.duckdns.org:5000/aboutSebas">About Me</a></li>
+            <li><a href="http://redsportfolio.duckdns.org:5000/aboutSebas-work">Work</a></li>
+            <li><a href="http://redsportfolio.duckdns.org:5000/aboutSebas-hobbies">Hobbies</a></li>
+            <li><a href="http://redsportfolio.duckdns.org:5000/aboutSebas-education">Education</a></li>
+            <li><a href="http://redsportfolio.duckdns.org:5000/aboutSebas-travel">Travel With Me</a></li>
+        </ul>
+    </nav>
+ </div>
+</header>
 <body>
+    <!--Home Page Banner-->
     
-    <!--<header class="nav-bar">
-        <div class="nav-content">
-            <a href="/">
-                <div class="nav-logo">
-                    <img src="./static/img/logo.svg" />
-                </div>
-            </a>
-        </div>
-    </header>
-
-    <div class="profile">
-        <div id="profile-picture" class="profile-picture">
-            <img src="./static/img/logo.jpg">
-        </div>
-        <h1>{{ title }}</h1>
-    </div>-->
-
-    <!--Navigation Bar-->
-    <div class="navbar">
-        <a href="http://redsportfolio.duckdns.org:5000/">Home</a>
-
-        <div class="dropdown">
-            <button class="dropbtn">About Us
-                <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content">
-                <a href="http://redsportfolio.duckdns.org:5000/aboutSebas">Sebastian</a>
-                <a href="http://redsportfolio.duckdns.org:5000/aboutSally">Sally</a>
-            </div>
-        </div>
-
-        <div class="dropdown">      
-            <button class="dropbtn">Work
-                <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content">
-                <a href="http://redsportfolio.duckdns.org:5000/aboutSebas-work">Sebastian</a>
-                <a href="http://redsportfolio.duckdns.org:5000/aboutSally-work">Sally</a>
-            </div>
-        </div>
-
-        <div class="dropdown">      
-            <button class="dropbtn">Hobbies
-                <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content">
-                <a href="http://redsportfolio.duckdns.org:5000/aboutSebas-hobbies">Sebastian</a>
-                <a href="http://redsportfolio.duckdns.org:5000/aboutSally-hobbies">Sally</a>
-            </div>
-        </div>
-
-        <div class="dropdown">      
-            <button class="dropbtn">Education
-                <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content">
-                <a href="http://redsportfolio.duckdns.org:5000/aboutSebas-education">Sebastian</a>
-                <a href="http://redsportfolio.duckdns.org:5000/aboutSally-education">Sally</a>
-            </div>
-        </div>
-
-        <div class="dropdown">      
-            <button class="dropbtn">Travel With Us
-                <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content">
-                <a href="http://redsportfolio.duckdns.org:5000/aboutSebas-travel">Sebastian</a>
-                <a href="http://redsportfolio.duckdns.org:5000/aboutSally-travel">Sally</a>
-            </div>
-        </div>
-
-    </div>
-
-
-    <!--Home Page-->
     <section id="home">
-        <div class="welcome-message">Welcome to the SSquad!</div>
+        <video autoplay loop muted plays-inline class="back-video">
+            <source src="./static/img/bannerBackground.mp4" type="video/mp4">
+        </video>
+        <div class="welcome-message">Welcome to my Portfolio!</div>
+        
     </section>
 
-    <!--About Us-->
-    <section id="about-us">
-        <div class="about">Who's the SSquad?</div>
+    <!--About me brief-->
+    <section id="about-me">
+        <div class="about">My name is Sebastian Rojas</div>
         <div class="row">
-            
-            <div class="column" id="sebas-column">
-                
-                    <a href="http://redsportfolio.duckdns.org:5000/aboutSebas">
-                        <img src="./static/img/sebasPic.jpg">
-                    </a>
-                
-            </div>
-            
-            <div class="column" id="sally-column">
-                
-                    <a href="http://redsportfolio.duckdns.org:5000/aboutSally">
-                    <img src="./static/img/sally.jpeg">
-                    </a>
-                
-            </div>
+            <a href="http://redsportfolio.duckdns.org:5000/aboutSebas">
+                <img src="./static/img/sebasPic.jpg">
+            </a>
         </div>
-
-        <div class="row">
-            <div class="label">
-                Sebastian
-            </div>
-            <div class="label">
-                Sally
-            </div>
+        <div class="about">I am a full stack developer and CS Student at ITESM</div>
         </div>
     </section>
 

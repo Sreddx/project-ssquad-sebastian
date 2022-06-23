@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 
 if __name__ == '__main__':
-    app.run(host='127.0.0.1')
+    app.run(debug=True)
 
 @app.route('/')
 def index():
@@ -55,40 +55,3 @@ app.add_url_rule("/aboutSebas-education", endpoint="sebasEducation")
 app.add_url_rule("/aboutSebas-travel", endpoint="sebasTravel")
 
 
-
-#Sally's Functions
-@app.route('/aboutSally')
-def sallyProfile():
-    return render_template('sally.html', extra_hobbies="Hobbies", hobby_list=["Watching Neflix","Listening to music"],
-    extra_work="Projects", work_list=["Task Tracker Website","News Website"], 
-    extra_education="Education", education_list=["Saratoga High School", "MLH Fellowship"])
-
-@app.endpoint('sallyWork')
-def sallyWork():
-    return render_template('sally.html', scrollToAnchor='work', extra_hobbies="Hobbies", hobby_list=["Watching Neflix","Listening to music"],
-    extra_work="Projects", work_list=["Task Tracker Website","News Website"], 
-    extra_education="Education", education_list=["Saratoga High School", "MLH Fellowship"])
-
-@app.endpoint('sallyHobbies')
-def sallyHobbies():
-    return render_template('sally.html', scrollToAnchor='hobbies', extra_hobbies="Hobbies", hobby_list=["Watching Neflix","Listening to music"],
-    extra_work="Projects", work_list=["Task Tracker Website","News Website"], 
-    extra_education="Education", education_list=["Saratoga High School", "MLH Fellowship"])
-
-@app.endpoint('sallyEducation')
-def sallyEducation():
-    return render_template('sally.html', scrollToAnchor='education', extra_hobbies="Hobbies", hobby_list=["Watching Neflix","Listening to music"],
-    extra_work="Projects", work_list=["Task Tracker Website","News Website"], 
-    extra_education="Education", education_list=["Saratoga High School", "MLH Fellowship"])
-
-@app.endpoint('sallyTravel')
-def sallyTravel():
-    return render_template('sally.html', scrollToAnchor='travel', extra_hobbies="Hobbies", hobby_list=["Watching Neflix","Listening to music"],
-    extra_work="Projects", work_list=["Task Tracker Website","News Website"], 
-    extra_education="Education", education_list=["Saratoga High School", "MLH Fellowship"])
-
-#Endpoints
-app.add_url_rule("/aboutSally-work", endpoint="sallyWork")
-app.add_url_rule("/aboutSally-hobbies", endpoint="sallyHobbies")
-app.add_url_rule("/aboutSally-education", endpoint="sallyEducation")
-app.add_url_rule("/aboutSally-travel", endpoint="sallyTravel")
