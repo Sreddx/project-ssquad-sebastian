@@ -5,9 +5,10 @@
 }
 /* Nav bar section*/
 .navbar {
-    margin-top: 5px ;
+    margin-bottom: 2vh ;
 	width: 100%;
-	margin: 0;
+    padding-top: 3vh;
+    padding-bottom: 3vh;
 }
 
 header {
@@ -115,8 +116,9 @@ h2{
 /* Work experience section */
 #work{
     min-height: 80vh;
-    background-color: rgb(216, 255, 214);
+    background-color: #f5f5f5;
     text-align: center;
+    padding-bottom: 3vh;
 }
 
 .images-row{
@@ -169,7 +171,7 @@ h2{
 
 #hobbies{
     min-height: 60vh;
-    background-color: rgb(255, 255, 255);
+    background-color: #f5f5f5;
     text-align: center;
 }
 
@@ -195,7 +197,7 @@ h2{
 /* Education section */
 #education{
     min-height: 80vh;
-    background-color: rgb(216, 255, 214);
+    background-color: #f5f5f5;
     text-align: center;
     align-content: center;
 }
@@ -257,7 +259,7 @@ h2{
 /* Travel section */
 #travel{
     min-height: 115vh;
-    background-color: rgb(216, 255, 214);
+    background-color: #f5f5f5;
     text-align: center;
     align-content: center;
 }
