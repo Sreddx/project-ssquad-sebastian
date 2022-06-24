@@ -11,12 +11,12 @@
     <div class="navbar">
        <nav>
            <ul>
-               <li><a href="http://redsportfolio.duckdns.org:5000/">Home</a></li>
-               <li><a href="http://redsportfolio.duckdns.org:5000/aboutSebas">About Me</a></li>
-               <li><a href="http://redsportfolio.duckdns.org:5000/aboutSebas-work">Work</a></li>
-               <li><a href="http://redsportfolio.duckdns.org:5000/aboutSebas-hobbies">Hobbies</a></li>
-               <li><a href="http://redsportfolio.duckdns.org:5000/aboutSebas-education">Education</a></li>
-               <li><a href="http://redsportfolio.duckdns.org:5000/aboutSebas-travel">Travel With Me</a></li>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('sebasProfile') }}">About Me</a></li>
+                <li><a href="{{ url_for('sebasWork') }}">Work</a></li>
+                <li><a href="{{ url_for('sebasHobbies') }}">Hobbies</a></li>
+                <li><a href="{{ url_for('sebasEducation') }}">Education</a></li>
+                <li><a href="{{ url_for('sebasTravel') }}">Travel With Me</a></li>
            </ul>
        </nav>
     </div>
