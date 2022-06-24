@@ -1,0 +1,38 @@
+{% extends 'sebastianTemplate.html' %}
+
+{% block content %}
+ <!--More About Me section-->
+ <section id="extra-jinja">
+    <h2>More about me</h2>
+
+    <div class="extra-column">
+        <p>Hobbies:</p>
+        
+        <ul>
+        {% for n in hobby_list %}
+        <li>{{n}}</li>
+        {% endfor %}
+        </ul>    
+    </div>
+
+    <div class="extra-column">
+        <p>Work experience:</p>
+        
+        <ul>
+        {% for n in work_list %}
+        <li>{{n}}</li>
+        {% endfor %}
+        </ul>
+    </div>
+
+    <div class="extra-column">
+        <p> Education:</p>
+        <ul>
+        {% for n in education_list %}
+        <li>{{n}}</li>
+        {% endfor %}
+        </ul>
+    </div>
+</section>
+{% endblock %}
+
