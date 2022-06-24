@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -28,12 +29,13 @@
  <div class="navbar">
     <nav>
         <ul>
-            <li><a href="http://redsportfolio.duckdns.org:5000/">Home</a></li>
-            <li><a href="http://redsportfolio.duckdns.org:5000/aboutSebas">About Me</a></li>
-            <li><a href="http://redsportfolio.duckdns.org:5000/aboutSebas-work">Work</a></li>
-            <li><a href="http://redsportfolio.duckdns.org:5000/aboutSebas-hobbies">Hobbies</a></li>
-            <li><a href="http://redsportfolio.duckdns.org:5000/aboutSebas-education">Education</a></li>
-            <li><a href="http://redsportfolio.duckdns.org:5000/aboutSebas-travel">Travel With Me</a></li>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('sebasProfile') }}">About Me</a></li>
+            <li><a href="{{ url_for('sebasWork') }}">Work</a></li>
+            <li><a href="{{ url_for('sebasHobbies') }}">Hobbies</a></li>
+            <li><a href="{{ url_for('sebasEducation') }}">Education</a></li>
+            <li><a href="{{ url_for('sebasTravel') }}">Travel With Me</a></li>
+            <li><a href="{{ url_for('moreAboutSebas') }}">More about Me</a></li>
         </ul>
     </nav>
  </div>
@@ -42,24 +44,14 @@
     <!--Home Page Banner-->
     
     <section id="home">
+        
         <video autoplay loop muted plays-inline class="back-video">
             <source src="./static/img/bannerBackground.mp4" type="video/mp4">
         </video>
-        <div class="welcome-message">Welcome to my Portfolio!</div>
+        <div class="welcome-message">Welcome to my Portfolio!</h1>
         
-    </section>
 
-    <!--About me brief-->
-    <section id="about-me">
-        <div class="about">My name is Sebastian Rojas Salazar</div>
-        <div class="row">
-            <a href="http://redsportfolio.duckdns.org:5000/aboutSebas">
-                <img src="./static/img/sebasPic.jpg">
-            </a>
-        </div>
-        <div class="about">I am a full stack developer and CS Student at ITESM</div>
-        </div>
-    </section>
+        <div class="welcome-info">My name is Sebastian Rojas</div>
 
 
 </body>
