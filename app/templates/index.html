@@ -42,7 +42,6 @@
 </header>
 <body>
     <!--Home Page Banner-->
-    
     <section id="home">
         
         <video autoplay loop muted plays-inline class="back-video">
@@ -50,9 +49,16 @@
         </video>
         <div class="welcome-message">Welcome to my Portfolio!</h1>
         
-
         <div class="welcome-info">My name is Sebastian Rojas</div>
-
+        <div class="row">
+            <a href="{{ url_for('sebasProfile') }}">
+                <img src="./static/img/sebasPic.jpg">
+            </a>
+        </div>
+        <div class="welcome-info">I am a full stack developer and CS Student at ITESM</div>
+        </div>
+       
+    </section>
 
 </body>
 
