@@ -7,8 +7,10 @@
 }
 /* Nav bar section*/
 .navbar {
-  width: 100%;
-  padding-top: 2vh;
+  margin-bottom: 2vh ;
+	width: 100%;
+  padding-top: 3vh;
+  padding-bottom: 3vh;
 }
 
 header {
