@@ -2,6 +2,8 @@ import os
 from flask import Flask, render_template, request
 from dotenv import load_dotenv
 from peewee import *
+import datetime
+from playhouse.shortcuts import model_to_dict
 
 load_dotenv()
 app = Flask(__name__)
@@ -19,6 +21,19 @@ mydb = MySQLDatabase(os.getenv("MYSQL_DATABASE"),
 
 print(mydb)
 
+class TimelinePost(Model):
+    name = CharField()
+    email = CharField()
+    content = TextField()
+    created_at = DateTimeField(default=datetime.datetime.now)
+
+    class Meta:
+        database = mydb
+
+mydb.connect()
+mydb.create_tables([TimelinePost])
+
+#Website routes
 @app.route('/')
 def index():
     return render_template('index.html', title="MLH Fellow", url=os.getenv("URL"))
@@ -63,4 +78,35 @@ app.add_url_rule("/aboutSebas-education", endpoint="sebasEducation")
 app.add_url_rule("/aboutSebas-more", endpoint="moreAboutSebas")
 app.add_url_rule("/aboutSebas-travel", endpoint="sebasTravel")
 
+#Timeline api
+#Post new timeline post
+@app.route('/api/timeline_post',methods=['POST'])
+def post_time_line_post():
+    name = request.form['name']
+    email = request.form['email']
+    content = request.form['content']
+    timeline_post = TimelinePost.create(name=name, email=email, content=content)
 
+    return model_to_dict(timeline_post)
+
+#Retrieve all timeline posts ordered by created_at descending
+@app.route('/api/timeline_post',methods=['GET'])
+def get_time_line_post():
+    return {
+        'timeline_posts': [
+            model_to_dict(p)
+            for p in
+TimelinePost.select().order_by(TimelinePost.created_at.desc())
+        ]
+    }
+
+#Delete timeline post
+@app.route('/api/timeline_post',methods=['DELETE'])
+def delete_time_line_post_by_name():
+    try:
+        name = request.form['name']
+        qry = TimelinePost.delete().where (TimelinePost.name==name)
+        qry.execute()
+        return "Post deleted"
+    except Exception as e:
+        return e
