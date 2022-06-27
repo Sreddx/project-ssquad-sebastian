@@ -78,10 +78,18 @@ app.add_url_rule("/aboutSebas-education", endpoint="sebasEducation")
 app.add_url_rule("/aboutSebas-more", endpoint="moreAboutSebas")
 app.add_url_rule("/aboutSebas-travel", endpoint="sebasTravel")
 
-#Timeline api
+#Timeline section
+@app.route('/timeline')
+def timeline():
+    return render_template('timeline.html',title="Timeline")
+
+
+
+
+
 #Post new timeline post
 @app.route('/api/timeline_post',methods=['POST'])
-def post_time_line_post():
+def post_timeline_post():
     name = request.form['name']
     email = request.form['email']
     content = request.form['content']
@@ -91,7 +99,7 @@ def post_time_line_post():
 
 #Retrieve all timeline posts ordered by created_at descending
 @app.route('/api/timeline_post',methods=['GET'])
-def get_time_line_post():
+def get_timeline_post():
     return {
         'timeline_posts': [
             model_to_dict(p)
@@ -102,7 +110,7 @@ TimelinePost.select().order_by(TimelinePost.created_at.desc())
 
 #Delete timeline post
 @app.route('/api/timeline_post',methods=['DELETE'])
-def delete_time_line_post_by_name():
+def delete_timeline_post_by_name():
     try:
         name = request.form['name']
         qry = TimelinePost.delete().where (TimelinePost.name==name)
