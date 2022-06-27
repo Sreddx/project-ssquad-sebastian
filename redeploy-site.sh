@@ -1,8 +1,6 @@
 #!/bin/bash
 
-tmux kill-server || echo "No tmux server to kill"
-
-cd /home/project-ssquad-sebastian
+cd /root/project-ssquad-sebastian
 git fetch && git reset --hard  origin/main
 source python3-virtualenv/bin/activate
 pip3 install -r requirements.txt
