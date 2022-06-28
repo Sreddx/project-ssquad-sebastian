@@ -6,4 +6,4 @@ source python3-virtualenv/bin/activate
 pip3 install -r requirements.txt
 
 #tmux new-session -d -s myportfolio 'source python3-virtualenv/bin/activate && flask run --host=0.0.0.0'
-systemctl restart myporfolio.service
+systemctl restart myportfolio.service
