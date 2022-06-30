@@ -1,0 +1,45 @@
+
+/* Hobbies section */
+
+#hobbies{
+    min-height: 80vh;
+    background-color: #f5f5f5;
+    text-align: center;
+}
+
+
+.hobby-descr-row{
+    display: flex;
+    column-count: 3;
+}
+
+.hobby-info{
+    width: 33%;
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+}
+
+.hobby-title{
+    text-align: center;
+    font-size: 25;
+}
+
+
+.images-row{
+    padding: 2vh;
+    display:flex;
+    justify-content: center;
+}
+
+.img-in-row{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width:  46.1vh;
+    height: 26vh;
+}
+
+.img-cont{
+    text-align: center;
+    width: 33%;
+    padding-left: 2%;
+    padding-right: 2%;
+}

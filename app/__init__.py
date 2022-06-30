@@ -12,12 +12,12 @@ app = Flask(__name__)
 if __name__ == '__main__':
     app.run(debug=True)
 
-mydb = MySQLDatabase(os.getenv("MYSQL_DATABASE"),
-    user=os.getenv("MYSQL_USER"),
-    password=os.getenv("MYSQL_PASSWORD"),
-    host=os.getenv("MYSQL_HOST"),
-    port=3306
-)
+# mydb = MySQLDatabase(os.getenv("MYSQL_DATABASE"),
+#     user=os.getenv("MYSQL_USER"),
+#     password=os.getenv("MYSQL_PASSWORD"),
+#     host=os.getenv("MYSQL_HOST"),
+#     port=3306
+# )
 
 #print(mydb)
 
@@ -27,11 +27,11 @@ class TimelinePost(Model):
     content = TextField()
     created_at = DateTimeField(default=datetime.datetime.now)
 
-    class Meta:
-        database = mydb
+#     class Meta:
+#         database = mydb
 
-mydb.connect()
-mydb.create_tables([TimelinePost])
+# mydb.connect()
+# mydb.create_tables([TimelinePost])
 
 #Website routes
 @app.route('/')
@@ -71,6 +71,11 @@ def moreAboutSebas():
 def jinjTest():
     return render_template('extraTemplate.html', url=os.getenv("URL"), my_string="Wheeeee!", my_list=[0,1,2,3,4,5])
 
+#Timeline section
+@app.route('/timeline')
+def timeline():
+    return render_template('timeline.html')
+
 #Endpoints
 app.add_url_rule("/aboutSebas-work", endpoint="sebasWork")
 app.add_url_rule("/aboutSebas-hobbies", endpoint="sebasHobbies")
@@ -78,10 +83,7 @@ app.add_url_rule("/aboutSebas-education", endpoint="sebasEducation")
 app.add_url_rule("/aboutSebas-more", endpoint="moreAboutSebas")
 app.add_url_rule("/aboutSebas-travel", endpoint="sebasTravel")
 
-#Timeline section
-@app.route('/timeline')
-def timeline():
-    return render_template('timeline.html',title="Timeline")
+
 
 
 

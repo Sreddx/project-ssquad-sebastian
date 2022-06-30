@@ -1,0 +1,52 @@
+
+/* Work experience section */
+#work{
+    min-height: 80vh;
+    background-color: #f5f5f5;
+    text-align: center;
+    padding-bottom: 3vh;
+}
+
+.images-row{
+    padding: 2vh;
+    display:flex;
+    justify-content: center;
+}
+
+.img-in-row{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width:  46.1vh;
+    height: 26vh;
+}
+
+.img-cont{
+    text-align: center;
+    width: 33%;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+.work-descr-row{
+    padding-top: 2vh;
+    display: flex;
+    column-count: 3;
+}
+
+.job-info{
+    width: 33%;
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+}
+
+.job-title{
+    text-align: center;
+    font-size: 25;
+}
+
+.job-descr{
+    font-size: 16;
+    text-align: left;
+}
+
+.tech-list {
+    text-align: left;
+}

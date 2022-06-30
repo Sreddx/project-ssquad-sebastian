@@ -1,0 +1,32 @@
+
+/* Education section */
+#education{
+    min-height: 80vh;
+    background-color: #f5f5f5;
+    text-align: center;
+    align-content: center;
+}
+
+#education-row{
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 5vh;
+    display:flex;
+    align-items: center;
+}
+
+
+.education-text {
+    padding: 1vh;
+    text-align: left;
+    font-family: 'Roboto', serif;
+    font-size: 1.8em;
+    line-height: 1.5em;
+    font-weight: semi-bold;
+}
+.img-in-row2{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    max-width: 85%;
+    max-height: auto;
+    float: right;
+}

@@ -1,0 +1,118 @@
+*{
+    margin: 0;
+    /* Padding top 3px rest 0*/
+    padding: 3px 0 0 0; 
+}
+/* Nav bar section*/
+.navbar {
+    margin-bottom: 2vh ;
+	width: 100%;
+    padding-top: 3vh;
+    padding-bottom: 3vh;
+}
+
+header {
+  
+  font-family: 'Work Sans', sans-serif;
+  margin: 0;
+  padding-bottom: 3.5vh;
+}
+
+header::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+
+nav {
+  float: left;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav li {
+  display: inline-block;
+  margin-left: 70px;
+  padding-top: 23px;
+
+  position: relative;
+}
+
+nav a {
+  color: #444;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: #000;
+}
+
+nav a::before {
+  content: '';
+  display: block;
+  height: 5px;
+  background-color: #444;
+
+  position: absolute;
+  top: 0;
+  width: 0%;
+
+  transition: all ease-in-out 250ms;
+}
+
+nav a:hover::before {
+  width: 100%;
+}
+
+/* Font styles */
+h2{
+    
+    font-size: 40px;
+    /*margin-top: 2%;*/
+    /*left: 50%;*/
+    /*top:2%;*/
+    text-align: center;
+    padding-bottom: 3%;
+    /*width: 50%;
+    margin: 0 auto;*/
+    font-family:'Courier New', Courier, monospace;
+    position: relative;
+    /*box-sizing:border-box;*/
+    position: relative;
+    padding-top: 3vh;
+    
+}
+
+/* Banner section */
+#banner{
+    min-height: 100vh;
+    background-color: rgb(255, 255, 255);
+    text-align: center;
+}
+#banner .my-name{
+    padding-top: 5vh;
+    font-size: 50px;
+    font-weight: bolder;
+}
+
+#banner img {
+    border-radius: 50%;
+    max-width: 50%;
+    max-height: 50%;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+}
+
+
+
+
+
+
