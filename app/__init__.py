@@ -19,7 +19,7 @@ mydb = MySQLDatabase(os.getenv("MYSQL_DATABASE"),
     port=3306
 )
 
-#print(mydb)
+print(mydb)
 
 class TimelinePost(Model):
     name = CharField()
@@ -71,6 +71,12 @@ def moreAboutSebas():
 def jinjTest():
     return render_template('extraTemplate.html', url=os.getenv("URL"), my_string="Wheeeee!", my_list=[0,1,2,3,4,5])
 
+#Timeline section
+@app.route('/timeline')
+def timeline():
+    posts=load_timeline_post()
+    return render_template('timeline.html', posts=posts)
+
 #Endpoints
 app.add_url_rule("/aboutSebas-work", endpoint="sebasWork")
 app.add_url_rule("/aboutSebas-hobbies", endpoint="sebasHobbies")
@@ -78,10 +84,7 @@ app.add_url_rule("/aboutSebas-education", endpoint="sebasEducation")
 app.add_url_rule("/aboutSebas-more", endpoint="moreAboutSebas")
 app.add_url_rule("/aboutSebas-travel", endpoint="sebasTravel")
 
-#Timeline section
-@app.route('/timeline')
-def timeline():
-    return render_template('timeline.html',title="Timeline")
+
 
 
 
@@ -95,11 +98,20 @@ def post_timeline_post():
     content = request.form['content']
     timeline_post = TimelinePost.create(name=name, email=email, content=content)
 
-    return model_to_dict(timeline_post)
+    return "Post created"
 
+#Retrieve all timeline and return list of posts
+@app.route('/api/load_timeline_post',methods=['GET'])
+def load_timeline_post():
+    timeline_posts = TimelinePost.select()
+    posts_list = []
+    for timeline_post in timeline_posts:
+        posts_list.append(model_to_dict(timeline_post))
+    return posts_list
+    
 #Retrieve all timeline posts ordered by created_at descending
 @app.route('/api/timeline_post',methods=['GET'])
-def get_timeline_post():
+def get_timeline_posts():
     return {
         'timeline_posts': [
             model_to_dict(p)
@@ -107,7 +119,7 @@ def get_timeline_post():
 TimelinePost.select().order_by(TimelinePost.created_at.desc())
         ]
     }
-
+    
 #Delete timeline post
 @app.route('/api/timeline_post',methods=['DELETE'])
 def delete_timeline_post_by_name():
