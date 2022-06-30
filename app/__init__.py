@@ -92,7 +92,7 @@ app.add_url_rule("/aboutSebas-travel", endpoint="sebasTravel")
 
 
 
-#Post new timeline post
+#Post new timeline 
 @app.route('/api/timeline_post',methods=['POST'])
 def post_timeline_post():
     name = request.form['name']
@@ -121,14 +121,13 @@ def get_timeline_posts():
 TimelinePost.select().order_by(TimelinePost.created_at.desc())
         ]
     }
-    
+
 #Delete timeline post
-@app.route('/api/timeline_post',methods=['DELETE'])
-def delete_timeline_post_by_name():
+@app.route('/api/delete_post/<int:id>',methods=['POST'])
+def delete_post(id):
     try:
-        name = request.form['name']
-        qry = TimelinePost.delete().where (TimelinePost.name==name)
+        qry = TimelinePost.delete().where (TimelinePost.id==id)
         qry.execute()
-        return "Post deleted"
+        return redirect('/timeline')
     except Exception as e:
         return e
