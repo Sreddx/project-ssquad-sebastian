@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, url_for, flash, redirect
 from dotenv import load_dotenv
 from peewee import *
 import datetime
@@ -74,7 +74,11 @@ def jinjTest():
 #Timeline section
 @app.route('/timeline')
 def timeline():
-    posts=load_timeline_post()
+    timeline_posts = TimelinePost.select()
+    posts = []
+    for timeline_post in timeline_posts:
+        posts.append(model_to_dict(timeline_post))
+ 
     return render_template('timeline.html', posts=posts)
 
 #Endpoints
@@ -88,8 +92,6 @@ app.add_url_rule("/aboutSebas-travel", endpoint="sebasTravel")
 
 
 
-
-
 #Post new timeline post
 @app.route('/api/timeline_post',methods=['POST'])
 def post_timeline_post():
@@ -98,7 +100,7 @@ def post_timeline_post():
     content = request.form['content']
     timeline_post = TimelinePost.create(name=name, email=email, content=content)
 
-    return "Post created"
+    return redirect('/timeline')
 
 #Retrieve all timeline and return list of posts
 @app.route('/api/load_timeline_post',methods=['GET'])
