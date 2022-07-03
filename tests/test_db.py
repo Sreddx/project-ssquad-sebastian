@@ -1,14 +1,14 @@
 # tests.py
 import unittest
 from peewee import *
-from app import TimelinePost
+from app import TimelinePost, get_timeline_posts
 
 
 MODELS=[TimelinePost]
 #use an in-memory SQLite for tests.
 test_db=SqliteDatabase(':memory:')
 
-print(test_db)
+#print(test_db)
 class TestTimelinePost(unittest.TestCase):
     def setUp(self):
         #Bind model classes to test db.Since we have a complete list of
@@ -34,3 +34,11 @@ class TestTimelinePost(unittest.TestCase):
         second_post=TimelinePost.create(name='Jane Doe',email='jame@example.com',content='Hello world,I\'mJane!')
         assert second_post.id == 2
         #TODO:Get timeline posts and assert that they are correct
+
+        #Check if length of list within dictionary is 2 as 2 posts were created previously. (Get funcion returns dictionary with list of posts)
+        response = get_timeline_posts() #We call get posts function
+        assert len(response["timeline_posts"]) == 2
+
+        #Check if posts in list are the same as the ones inserted 2 is the first in the list and 1 is the second
+        assert response["timeline_posts"][0]["name"] =='Jane Doe' #Jane Doe
+        assert response["timeline_posts"][1]["name"] =='John Doe' #John Doe
