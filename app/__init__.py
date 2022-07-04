@@ -3,6 +3,7 @@ from flask import Flask, render_template, request, url_for, flash, redirect
 from dotenv import load_dotenv
 from peewee import *
 import datetime
+import re
 from playhouse.shortcuts import model_to_dict
 
 load_dotenv()
@@ -19,7 +20,8 @@ mydb = MySQLDatabase(os.getenv("MYSQL_DATABASE"),
     port=3306
 )
 
-print(mydb)
+# Regex for validating an Email
+regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
 
 class TimelinePost(Model):
     name = CharField()
@@ -95,12 +97,28 @@ app.add_url_rule("/aboutSebas-travel", endpoint="sebasTravel")
 #Post new timeline 
 @app.route('/api/timeline_post',methods=['POST'])
 def post_timeline_post():
-    name = request.form['name']
-    email = request.form['email']
-    content = request.form['content']
-    timeline_post = TimelinePost.create(name=name, email=email, content=content)
+    name = request.form.get('name', None)
+    email = request.form.get('email', None)
+    content = request.form.get('content', None)
+    error=None
+    #Verify form content
+    if name is None or name == '':
+        error = 'Name is required.'
+    elif email is None or email == '':
+        error = 'Email is required.'
+    elif content is None or content == '':
+        error = 'Content is required.'
+    
+    #Verify valid email format with regex
+    if not (re.fullmatch(regex, email)):
+        error = "Invalid email"
 
-    return redirect('/timeline')
+    if error is not None:
+        return error, 400
+    else:
+        timeline_post = TimelinePost.create(name=name, email=email, content=content)
+        return model_to_dict(timeline_post)
+        
 
 #Retrieve all timeline and return list of posts
 @app.route('/api/load_timeline_post',methods=['GET'])

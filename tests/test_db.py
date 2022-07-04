@@ -1,7 +1,7 @@
 import unittest
 from peewee import *
 
-from app import TimelinePost
+from app import TimelinePost, get_timeline_posts
 
 MODELS = [TimelinePost]
 
@@ -27,13 +27,16 @@ class TestTimelinePost(unittest.TestCase):
         test_db.close()
 
     def test_timeline_post(self):
-        # Create 2 timeline posts.
-        first_post = TimelinePost.create(name='John Doe', email='john@example.com',
-content='Hello world, I\'m John!')
+        #Create two timeline posts and verify if they exist
+        first_post=TimelinePost.create(name='John Doe',email='john@example.com',content='Hello world,I\'mJohn!')
         assert first_post.id == 1
-        second_post = TimelinePost.create(name='Jane Doe', email='jame@example.com',
-content='Hello world, I\'m Jane!')
+        second_post=TimelinePost.create(name='Jane Doe',email='jame@example.com',content='Hello world,I\'mJane!')
         assert second_post.id == 2
-        
-        response = get_timeline_posts()
-        assert len(response['timeline_posts']) == 2
+
+        #Check if length of list within dictionary is 2 as 2 posts were created previously. (Get function returns dictionary with list of posts)
+        response = get_timeline_posts() #We call get posts function
+        assert len(response["timeline_posts"]) == 2
+
+        #Check if posts in list are the same as the ones inserted 2 is the first in the list and 1 is the second
+        assert response["timeline_posts"][0]["name"] =='Jane Doe' #Jane Doe
+        assert response["timeline_posts"][1]["name"] =='John Doe' #John Doe
