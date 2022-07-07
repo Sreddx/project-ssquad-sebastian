@@ -1,9 +1,7 @@
 #!/bin/bash
 
 cd /root/project-ssquad-sebastian
-git fetch && git reset --hard  origin/main
-source python3-virtualenv/bin/activate
-pip3 install -r requirements.txt
+git fetch && git reset origin/main --hard  
+docker-compose -f docker-compose.prod.yml down
+docker-compose -f docker-compose.prod.yml up -d --build
 
-#tmux new-session -d -s myportfolio 'source python3-virtualenv/bin/activate && flask run --host=0.0.0.0'
-systemctl restart myportfolio.service
