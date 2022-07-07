@@ -69,7 +69,7 @@ def sebasTravel():
 
 @app.endpoint("moreAboutSebas")
 def moreAboutSebas():
-    return render_template('moreAboutSection.html', extra_hobbies="Hobbies", hobby_list=["Going to the beach","Surfing","Reading"],
+    return render_template('moreAboutSection.html', extra_hobbies="Hobbies", hobby_list=["Going to the beach","Surfing","Reading manga"],
     extra_work="Work experiences", work_list=["Freelance web page dev","Indoor cycling staff"], 
     extra_education="Education",education_list=["Harkness Highscool", "MLH Fellowship"])
 
