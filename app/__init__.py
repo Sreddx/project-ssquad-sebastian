@@ -80,10 +80,11 @@ def jinjTest():
 #Timeline section
 @app.route('/timeline')
 def timeline():
+    #Retrieve existing posts on page load
     timeline_posts = TimelinePost.select()
     posts = []
-    for timeline_post in timeline_posts:
-        posts.append(model_to_dict(timeline_post))
+    for post in timeline_posts:
+        posts.append(model_to_dict(post))
  
     return render_template('timeline.html', posts=posts)
 
@@ -99,7 +100,7 @@ app.add_url_rule("/aboutSebas-travel", endpoint="sebasTravel")
 
 
 #Post new timeline 
-@app.route('/api/timeline_post',methods=['POST'])
+@app.route('/api/newPost',methods=['POST'])
 def post_timeline_post():
     name = request.form.get('name', None)
     email = request.form.get('email', None)
