@@ -2,9 +2,8 @@ import os
 from flask import Flask, render_template, request, url_for, flash, redirect
 from dotenv import load_dotenv
 from peewee import *
-import datetime
-import re
-from playhouse.shortcuts import model_to_dict
+
+
 
 load_dotenv()
 app = Flask(__name__)
@@ -13,6 +12,7 @@ app = Flask(__name__)
 if __name__ == '__main__':
     app.run(debug=True)
 
+#Initialize DB
 if os.getenv("TESTING") == "true":
     print("Running in test mode")
     mydb = SqliteDatabase('file:memory?mode=memory&cache=shared', uri=True)
@@ -24,20 +24,8 @@ else:
         port=3306
     )
 
-# Regex for validating an Email
-regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
-
-class TimelinePost(Model):
-    name = CharField()
-    email = CharField()
-    content = TextField()
-    created_at = DateTimeField(default=datetime.datetime.now)
-
-    class Meta:
-        database = mydb
-
-mydb.connect()
-mydb.create_tables([TimelinePost])
+#Import endpoints from timeline
+from . timeline import timeline, post_timeline_post, load_timeline_post, get_timeline_posts, delete_post
 
 #Website routes
 @app.route('/')
@@ -77,18 +65,8 @@ def moreAboutSebas():
 def jinjTest():
     return render_template('extraTemplate.html', url=os.getenv("URL"), my_string="Wheeeee!", my_list=[0,1,2,3,4,5])
 
-#Timeline section
-@app.route('/timeline')
-def timeline():
-    #Retrieve existing posts on page load
-    timeline_posts = TimelinePost.select()
-    posts = []
-    for post in timeline_posts:
-        posts.append(model_to_dict(post))
- 
-    return render_template('timeline.html', posts=posts)
 
-#Endpoints
+#Endpoints for views
 app.add_url_rule("/aboutSebas-work", endpoint="sebasWork")
 app.add_url_rule("/aboutSebas-hobbies", endpoint="sebasHobbies")
 app.add_url_rule("/aboutSebas-education", endpoint="sebasEducation")
@@ -96,61 +74,19 @@ app.add_url_rule("/aboutSebas-more", endpoint="moreAboutSebas")
 app.add_url_rule("/aboutSebas-travel", endpoint="sebasTravel")
 
 
+#Timeline section--------
 
-
-
-#Post new timeline 
-@app.route('/api/newPost',methods=['POST'])
-def post_timeline_post():
-    name = request.form.get('name', None)
-    email = request.form.get('email', None)
-    content = request.form.get('content', None)
-    error=None
-    #Verify form content
-    if name is None or name == '':
-        error = 'Name is required.'
-    elif email is None or email == '':
-        error = 'Email is required.'
-    elif content is None or content == '':
-        error = 'Content is required.'
-    
-    #Verify valid email format with regex
-    if not (re.fullmatch(regex, email)):
-        error = "Invalid email"
-
-    if error is not None:
-        return error, 400
-    else:
-        timeline_post = TimelinePost.create(name=name, email=email, content=content)
-        return model_to_dict(timeline_post)
-        
-
+#Endpoints for timeline
+#Render timeline page
+app.add_url_rule('/timeline', view_func=timeline, methods=['GET'])
+#Post to timeline 
+app.add_url_rule('/api/newPost', view_func=post_timeline_post, methods=['POST'])
 #Retrieve all timeline and return list of posts
-@app.route('/api/load_timeline_post',methods=['GET'])
-def load_timeline_post():
-    timeline_posts = TimelinePost.select()
-    posts_list = []
-    for timeline_post in timeline_posts:
-        posts_list.append(model_to_dict(timeline_post))
-    return posts_list
-    
+app.add_url_rule('/api/load_timeline_post', view_func=load_timeline_post, methods=['GET'])
 #Retrieve all timeline posts ordered by created_at descending
-@app.route('/api/timeline_post',methods=['GET'])
-def get_timeline_posts():
-    return {
-        'timeline_posts': [
-            model_to_dict(p)
-            for p in
-TimelinePost.select().order_by(TimelinePost.created_at.desc())
-        ]
-    }
-
+app.add_url_rule('/api/timeline_post', view_func=get_timeline_posts, methods=['GET'])
 #Delete timeline post
-@app.route('/api/delete_post/<int:id>',methods=['POST'])
-def delete_post(id):
-    try:
-        qry = TimelinePost.delete().where (TimelinePost.id==id)
-        qry.execute()
-        return redirect('/timeline')
-    except Exception as e:
-        return e
+app.add_url_rule('/api/delete_post/<int:id>', view_func=delete_post, methods=['POST'])
+
+
+
