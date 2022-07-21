@@ -61,14 +61,16 @@
     <section class="post-cards">
         <div class="container-fluid">
             <div class="row">
-                {% for post in posts_list %}
+                {% for post in posts %}
                     <div class="card" style="width: 18rem; ">
                         <div class="card-body">
                             <h5 class="card-title">{{ post['name'] }}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">Date posted:{{ post['created_at'] }}</h6>
                             <p class="card-text">{{ post['content'] }}</p>
                             <a href="#" class="card-link">Edit post</a>
-                            <a href="#" class="card-link">Delete post</a>
+                            <form action="{{ url_for('delete_post', id=post['id']) }}" method="post">
+                              <button class="btn btn-secondary">Delete post</button>
+                            </form>
                         </div>
                     </div>
                 {% endfor %} 
