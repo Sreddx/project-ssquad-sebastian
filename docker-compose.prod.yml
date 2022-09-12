@@ -13,7 +13,7 @@ services:
 
   mysql:
     container_name: mysql
-    image: mariadb
+    image: jsurf/rpi-mariadb
     restart: always
     env_file:
       - .env
